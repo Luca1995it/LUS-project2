@@ -1,0 +1,98 @@
+slots:
+ cuisine:
+  type: text
+ people:
+  type: text
+ location:
+  type: text
+ price:
+  type: text
+ info:
+  type: text
+ matches:
+  type: unfeaturized
+
+entities:
+- location
+- info
+- people
+- price
+- cuisine
+
+intents:
+- greet
+- affirm
+- deny
+- inform
+- thankyou
+- request_info
+
+templates:
+ utter_greet:
+  - "hey there!"
+  - "hey, i'm jarvis, ready to take orders"
+  - "hy sir!"
+  - "Hy, i'm ready for you!"
+  - "good morning sir, i'm jarvis"
+ utter_goodbye:
+  - "goodbye :("
+  - "bye-bye"
+  - "see you later"
+  - "bye, do not forget me!"
+ utter_default:
+  - "default message by you assistant jarvis"
+ utter_ack_dosearch:
+  - "ok let me see what i can find"
+  - "please give me a second to do some researches"
+  - "ok i'm searching something for you!"
+ utter_ack_findalternatives:
+  - "ok let me see what else there is"
+  - "ok i will search for something else"
+  - "let me see if there is something else"
+ utter_ack_makereservation:
+  - "ok making a reservation"
+  - "ok i will contact the restaurant and make a reservation"
+  - "perfect, i will book the reservation for you"
+  - "good, i will now call the restaurant and make a reservation"
+ utter_ask_cuisine:
+  - "what kind of cuisine would you like?"
+ utter_ask_howcanhelp:
+  - "how can i help you?"
+  - "how can i serve you?"
+  - "hy friend, what do you want?"
+  - "jarvis at you service, how can i help you?"
+  - "give me an order or ask me something"
+ utter_ask_location:
+  - "where?"
+ utter_ask_moreupdates:
+  - "if you'd like to modify anything else, please tell me what"
+  - "do you want to update some information you gave me?"
+ utter_ask_numpeople:
+  - "for how many people?"
+  - "how many will you be?"
+  - "how many friends do you have?"
+ utter_ask_price:
+  - "in which price range?"
+  - "how much money do you have?"
+  - "do you want something cheap or something expensive?"
+ utter_on_it:
+  - "I'm on it"
+  - "good, good"
+  - "ready"
+
+actions:
+- utter_greet
+- utter_goodbye
+- utter_default
+- utter_ack_dosearch
+- utter_ack_findalternatives
+- utter_ack_makereservation
+- utter_ask_cuisine
+- utter_ask_howcanhelp
+- utter_ask_location
+- utter_ask_moreupdates
+- utter_ask_numpeople
+- utter_ask_price
+- utter_on_it
+- custom_actions.ActionSearchRestaurants
+- custom_actions.ActionSuggest
