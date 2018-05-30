@@ -35,10 +35,12 @@ evaluate-nlu:
 	--folds 5 \
 	--verbose
 
-
 evaluate-core:
 	python -m rasa_core.evaluate \
 	--stories data/babi_stories.md \
 	--max_stories 1000 \
 	--core models/dialogue \
 	--nlu models/nlu/default/current
+
+populate-db:
+	python populate_database.py

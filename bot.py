@@ -22,7 +22,7 @@ from speech_channel import SpeechInputChannel
 
 logger = logging.getLogger(__name__)
 
-SPEECH_ON = True
+SPEECH_ON = False
 
 def train_dialogue(domain_file="restaurant_domain.yml",
 				   model_path="models/dialogue",

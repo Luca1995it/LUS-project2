@@ -5,6 +5,7 @@ import csv
 client = MongoClient('mongodb://localhost:27017/')
 collection = client.jarvis.restaurants
 
+# cleaning collecion
 collection.remove()
 
 with open('data/restaurants_dataset.csv') as f:

@@ -65,6 +65,13 @@ slots:
   price:
     initial_value: null
     type: rasa_core.slots.TextSlot
+  requested_slot:
+    initial_value: null
+    type: rasa_core.slots.CategoricalSlot
+    values:
+    - cuisine
+    - location
+    - price
 templates:
   utter_ack_dosearch:
   - text: ok let me see what i can find

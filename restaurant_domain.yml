@@ -11,6 +11,12 @@ slots:
   type: text
  matches:
   type: unfeaturized
+ requested_slot:
+  type: categorical
+  values:
+   - cuisine
+   - location
+   - price
 
 entities:
 - location
