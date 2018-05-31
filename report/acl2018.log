@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.18)  30 MAY 2018 17:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.18)  31 MAY 2018 13:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -312,21 +312,7 @@ Package graphics Info: Driver file: pdftex.def on input line 99.
 \Gin@req@height=\dimen128
 \Gin@req@width=\dimen129
 )
-(./acl2018.aux
-
-./acl2018.aux:24: Package natbib Error: Bibliography not compatible with author
--year citations.
-(natbib)                Press <return> to continue in numerical citation style.
-
-
-See the natbib package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.24 ...mand\NAT@force@numbers{}\NAT@force@numbers
-                                                  
-? 
-)
+(./acl2018.aux)
 \openout1 = `acl2018.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
@@ -349,7 +335,6 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 \AtBeginShipoutBox=\box30
 Package hyperref Info: Link coloring ON on input line 41.
-
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -453,177 +438,162 @@ File: omsptm.fd
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 61.
+ [1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-Underfull \hbox (badness 1502) in paragraph at lines 69--74
-\OT1/ptm/m/n/10.95 rep-re-sent-ing sound-waves and con-vert it to a
+
+
+] [2]
+Underfull \hbox (badness 6575) in paragraph at lines 146--147
+[]\OT1/ptm/m/n/10.95 We trained and eval-u-ated three dif-fer-ent
  []
 
+[3]
 
-Underfull \hbox (badness 1565) in paragraph at lines 69--74
-\OT1/ptm/m/n/10.95 se-quence of words. There are many on-line
- []
-
-
-Overfull \hbox (32.40779pt too wide) in paragraph at lines 69--74
-\OT1/ptm/m/n/10.95 "$\OML/cmm/m/it/10.95 please search for an Italian restauran
-t in London$\OT1/ptm/m/n/10.95 "
- []
+Package natbib Warning: Citation `pipeline' on page 4 undefined on input line 1
+56.
 
 
-Underfull \hbox (badness 1558) in paragraph at lines 69--74
-\OT1/ptm/m/n/10.95 gen-er-ate pre-de-fined sen-tences and use sim-ple
- []
-
-[1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+LaTeX Warning: File `test_base.png' not found on input line 172.
 
 
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 77--78
-\OT1/ptm/m/n/10.95 Rasa is an open-source project that de-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 77--78
-\OT1/ptm/m/n/10.95 vel-ops two pow-er-ful frame-works to do
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 77--78
-\OML/cmm/m/it/10.95 Natural Language Understanding$ \OT1/ptm/m/n/10.95 and
- []
-
-[2] [3]
-
-LaTeX Warning: File `test_base.png' not found on input line 167.
-
-
-./acl2018.tex:167: Package pdftex.def Error: File `test_base.png' not found.
+./acl2018.tex:172: Package pdftex.def Error: File `test_base.png' not found.
 
 See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.167 ...graphics[width=\textwidth]{test_base.png}
+l.172 ...graphics[width=\textwidth]{test_base.png}
                                                   
 ? 
 
-Underfull \hbox (badness 5696) in paragraph at lines 172--174
+Underfull \hbox (badness 5696) in paragraph at lines 177--179
 \OT1/ptm/m/n/10.95 The graph in Fig. 3 shows the re-sults
  []
 
 
-Underfull \hbox (badness 2617) in paragraph at lines 172--174
+Underfull \hbox (badness 2617) in paragraph at lines 177--179
 \OT1/ptm/m/n/10.95 of the base al-go-rithm with all the dif-fer-ent
  []
 
 
-Underfull \hbox (badness 1460) in paragraph at lines 172--174
+Underfull \hbox (badness 1460) in paragraph at lines 177--179
 \OT1/ptm/m/n/10.95 prob-a-bil-ity dis-tri-bu-tions and with and n-gram
  []
 
 
-Underfull \hbox (badness 2213) in paragraph at lines 172--174
+Underfull \hbox (badness 2213) in paragraph at lines 177--179
 \OT1/ptm/m/n/10.95 ments about the F1-score: the bet-ter tu-ples
  []
 
 
-Underfull \hbox (badness 1365) in paragraph at lines 172--174
+Underfull \hbox (badness 1365) in paragraph at lines 177--179
 \OT1/ptm/m/n/10.95 the $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 witten[]bell; \
 OT1/cmr/m/n/10.95 2)$ \OT1/ptm/m/n/10.95 and $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it
 /10.95 absolute; \OT1/cmr/m/n/10.95 2)$\OT1/ptm/m/n/10.95 . They
  []
 
 
-LaTeX Warning: File `test_impr.png' not found on input line 178.
+LaTeX Warning: File `test_impr.png' not found on input line 183.
 
 
-./acl2018.tex:178: Package pdftex.def Error: File `test_impr.png' not found.
+./acl2018.tex:183: Package pdftex.def Error: File `test_impr.png' not found.
 
 See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.178 ...graphics[width=\textwidth]{test_impr.png}
+l.183 ...graphics[width=\textwidth]{test_impr.png}
                                                   
 ? 
-
-Underfull \vbox (badness 1226) has occurred while \output is active []
-
- [4]
-[5] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 202--203
+[4] [5] [6]
+Underfull \hbox (badness 10000) in paragraph at lines 207--208
 []\OT1/ptm/m/n/10.95 An com-plete ex-am-ple of the code is
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 202--203
+Underfull \hbox (badness 10000) in paragraph at lines 207--208
 \OT1/ptm/m/n/10.95 avail-able here: [][]$\OT1/pcr/m/n/10.95 https : / / github 
 . com /
  []
 
 
-Underfull \hbox (badness 1769) in paragraph at lines 210--212
-\OT1/ptm/m/n/10 com-bin-ing, op-ti-miz-ing, and search-ing weighted
+Underfull \hbox (badness 3746) in paragraph at lines 219--221
+\OT1/ptm/m/n/10 con-struct-ing, com-bin-ing, ap-ply-ing and search-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 210--212
-[][]$\OT1/pcr/m/n/10 http : / / www . openfst . org / twiki / bin /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 218--220
+Underfull \hbox (badness 10000) in paragraph at lines 223--225
 []\OT1/ptm/m/n/10 Wikipedia - Inside-outside-beginning tag-ging
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 218--220
+Underfull \hbox (badness 10000) in paragraph at lines 223--225
 [][]$\OT1/pcr/m/n/10 https : / / en . wikipedia . org / wiki /
  []
 
 
-Underfull \hbox (badness 4467) in paragraph at lines 222--224
+Underfull \hbox (badness 10000) in paragraph at lines 227--229
 []\OT1/ptm/m/n/10 Wikipedia - Lan-guage Model [][]$\OT1/pcr/m/n/10 https : / / 
 en .
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 232.
+
+Underfull \hbox (badness 1895) in paragraph at lines 231--233
+[]\OT1/ptm/m/n/10 NYU Courant - Weighted Finite-State Trans-ducer
+ []
+
+
+Package natbib Warning: There were undefined citations.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 237.
 [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 232.
- (./acl2018.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 232.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 232.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 237.
+ (./acl2018.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+
+./acl2018.aux:25: Package natbib Error: Bibliography not compatible with author
+-year citations.
+(natbib)                Press <return> to continue in numerical citation style.
+
+
+See the natbib package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.25 ...mand\NAT@force@numbers{}\NAT@force@numbers
+                                                  
+? 
+)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 237.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 237.
 Package rerunfilecheck Info: File `acl2018.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 232.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 237.
  )
 (\end occurred when \iffalse on line 349 was incomplete) 
 Here is how much of TeX's memory you used:
- 7526 strings out of 492995
- 108054 string characters out of 6132704
- 208366 words of memory out of 5000000
- 10939 multiletter control sequences out of 15000+600000
- 25524 words of font info for 75 fonts, out of 8000000 for 9000
+ 7529 strings out of 492995
+ 108101 string characters out of 6132704
+ 207276 words of memory out of 5000000
+ 10940 multiletter control sequences out of 15000+600000
+ 27208 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 35i,11n,37p,1266b,351s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 35i,10n,37p,1266b,352s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/201
 7/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2017/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/font
-s/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2017/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/pu
-blic/amsfonts/symbols/msam10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type
-1/urw/courier/ucrr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/ti
-mes/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmr8a
-.pfb>
-Output written on acl2018.pdf (7 pages, 137863 bytes).
+nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/
+type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/ur
+w/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/ut
+mr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on acl2018.pdf (7 pages, 106565 bytes).
 PDF statistics:
- 130 PDF objects out of 1000 (max. 8388607)
- 108 compressed objects within 2 object streams
+ 112 PDF objects out of 1000 (max. 8388607)
+ 95 compressed objects within 1 object stream
  35 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

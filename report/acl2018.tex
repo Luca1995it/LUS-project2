@@ -66,19 +66,19 @@ The Human Machine Spoken Dialog is the set of all components that, together, all
 \item Text to Speech Synthesis
 \item Speaker
 \end{itemize}
-The $Automatic\ Speech\ Recognition$ and the $Text\ to\ Speech\ Synthesis$ are the components that has to interact directly with the user. The first has to take in input a discrete electric signal representing sound-waves and convert it to a sequence of words. There are many online services (Google first) that help doing this task easily.
-After having converted speech in text, the next step consists in the extraction of intents and entities from the input sentence. This task is called $Natural\ Language\ Understanding$. Intents are a finite set of what the user wants to do, for example a requests or a command. Better results can be obviously obtained trying to use one intent for each sentence. On the other side entities are the important informations that has to be extracted from the sentence and that has to be used by the machine. For example, the sentence "$please\ search\ for\ an\ Italian\ restaurant\ in\ London$" contains two entities: the type of cuisine and the location of the restaurant. In this case the intent was to do a research of restaurants.
-Once intents and entities has been correctly extracted, they are used by the $Dialogue\ Manager$ to take decisions on what the bot should do next. Dialogue Managers can be seen as routers: they receive as an input intents and entities and have to decide which action the bot should execute. For better performances they often receive in input a record of the past interactions. What are actions? Actions are functions that use all the previous informations to create a response for the user. They often can query a database or make online searches. The output of the action is a sequence of informations that has to be sent to the user, but are not yet sentences.
-The transduction of information in sentences for the user is done by the $Language\ Generation$ module. This task is one of the most difficult and this project will not cover how to create such a module, it will generate predefined sentences and use simple templates.
-Finally, once the sentence has been created, a $Text\ to\ Speech\ Synthesizer$ provides the functionalities to transform it in sound-waves that can be understood by a human, trying to emulate all the human behaviours while speaking, for example doing little pauses between different sentences, changes of tones, variations of the pitch and the correct use of accents. The cycle will then restart if the user will say something else.
+The \textit{Automatic Speech Recognition} and the \textit{Text to Speech Synthesis} are the components that has to interact directly with the user. The first has to take in input a discrete electric signal representing sound-waves and convert it to a sequence of words. There are many online services (Google first) that help doing this task easily.
+After having converted speech in text, the next step consists in the extraction of intents and entities from the input sentence. This task is called \textit{Natural Language Understanding}. Intents are a finite set of what the user wants to do, for example a requests or a command. Better results can be obviously obtained trying to use one intent for each sentence. On the other side entities are the important informations that has to be extracted from the sentence and that has to be used by the machine. For example, the sentence "please search for an Italian restaurant in London" contains two entities: the type of cuisine and the location of the restaurant. In this case the intent was to do a research of restaurants.
+Once intents and entities has been correctly extracted, they are used by the \textit{Dialogue Manager} to take decisions on what the bot should do next. Dialogue Managers can be seen as routers: they receive as an input intents and entities and have to decide which action the bot should execute. For better performances they often receive in input a record of the past interactions. What are actions? Actions are functions that use all the previous informations to create a response for the user. They often can query a database or make online searches. The output of the action is a sequence of informations that has to be sent to the user, but are not yet sentences.
+The transduction of information in sentences for the user is done by the \textit{Language Generation} module. This task is one of the most difficult and this project will not cover how to create such a module, it will generate predefined sentences and use simple templates.
+Finally, once the sentence has been created, a \textit{Text to Speech Synthesizer} provides the functionalities to transform it in sound-waves that can be understood by a human, trying to emulate all the human behaviours while speaking, for example doing little pauses between different sentences, changes of tones, variations of the pitch and the correct use of accents. The cycle will then restart if the user will say something else.
  
 \subsection{RasaNLU and RasaCore}
 
-Rasa is an open-source project that develops two powerful frameworks to do $Natural\ Language\ Understanding$ and $Dialogue Management$. 
+Rasa is an open-source project that develops two powerful frameworks to do \textit{Natural Language Understanding} and \textit{Dialogue Management}. 
 
 \subsubsection{RasaNLU}
 
-RasaNLU allows to train a model for the extraction of entities and the classification intents. It uses different existent ML and NLP libraries like Spacy and TensorFlow. Each model can be build as the combination of different layers that will be processed in pipeline. For example, the default $spacy_sklearn$ pipeline will use 7 different layers, each one with a different task like tokenisation and featurization. It reaches very high performances in entities extraction if a good training set is given. Broadly, it works better if sentences are not to long and there are no more than 3-4 entities per sentence. Intents are good classified too if they are not too many and if sentence are not too long. 
+RasaNLU allows to train a model for the extraction of entities and the classification intents. It uses different existent ML and NLP libraries like Spacy and TensorFlow. Each model can be build as the combination of different layers that will be processed in pipeline. For example, the default \textit{spacy\_sklearn} pipeline will use 7 different layers, each one with a different task like tokenisation and featurization. It reaches very high performances in entities extraction if a good training set is given. Broadly, it works better if sentences are not to long and there are no more than 3-4 entities per sentence. Intents are good classified too if they are not too many and if sentence are not too long. 
 
 \subsubsection{RasaCore}
 
@@ -102,7 +102,7 @@ The dataset for the NLU task is called Franken Data and contains 1977 sentences.
 \end{itemize}
 
 The sentences has a very low average length of 4.4 words, and this will leads to very satisfying results in the accuracy of the RasaNLU model.
-The entities are not so many, with an average of only 0.65 entities extracted from each sentence (1293 in total). There are lots of very simple sentence like $ok\ great$ or $perfect\ thank\ you$ that does not contain entities at all while some others have up to 4 entities and are longer (up to 22 words), especially those whose intent is to inform or request for informations. For each entity there are information about the part of the sentence it was found, to help the algorithm perform better. There are 5 different types of entities:
+The entities are not so many, with an average of only 0.65 entities extracted from each sentence (1293 in total). There are lots of very simple sentence like \textit{ok great} or \textit{perfect thank you} that does not contain entities at all while some others have up to 4 entities and are longer (up to 22 words), especially those whose intent is to inform or request for informations. For each entity there are information about the part of the sentence it was found, to help the algorithm perform better. There are 5 different types of entities:
 
 \begin{itemize}
 \item cuisine, with 70 different specialities (573 total instances)
@@ -130,32 +130,37 @@ The bAbi story dataset is a collection of stories developed by Facebook. Our ver
 \item Regards
 \end{itemize}
 
-The average length of the conversation, including both user and bot is of 25 actions and intents. There are cases in which the Bot executes more than an action in a row, especially proposing restaurants or confirming an info and then requesting something else. In each story, there are intents of the user with some entities in attachment, to better simulate a real conversation. As showed in the story pattern before, all the conversations start with greetings and ends with
+The average length of the conversation, including both user and bot is of 25 actions and intents. There are cases in which the Bot executes more than an action in a row, especially proposing restaurants or confirming an info and then requesting something else. In each story, there are intents of the user with some entities in attachment, to better simulate a real conversation. As showed in the story pattern before, all the conversations start with greetings and ends with regards but there is no limit to the number of times a user can choose to change some info for the query or ask for other results.
 
-\section{NLU algorithms and testing}
+\section{Tecniques}
 
-The core of our algorithm is based on the composition of two FSTs encoding two different probabilities.\\
-The first FST will be equivalent to the formula $ P \big( token \big | concept\_tag ) $, and will be able to transduce a sequence of tokens (a sentence) in the corresponding IOB notation. This probability will be computed using the number of times a concept tag appears with a given token divided by the frequency of the single token, as showed in Formula 2. This FST will have only one state with lots of self-transitions, each of them encoding the translation of a token to a concept tag and the respective cost.
-\begin{multline}
-P \big( token | concept\_tag \big) = \\
-C \big( token,concept\_tag \big) / C \big( concept\_tag \big)
-\end{multline}
-Given that an FST encodes the $cost$ of going through a specific path, the previous probability is converted in cost with the formula 3.
-\begin{multline}
-Cost \big( token | concept\_tag \big) = \\
-- \log\big(P ( token | concept\_tag )\big)
-\end{multline}
+\subsection{Speech2Text \& Text2Speech}
 
-The second FST will encode the probability of a specific concept given the previous $n$ ones.
-\begin{multline}
-P \big( concept\_tag_n | \\
- concept\_tag_{n-1}, concept\_tag_{n-2}, ... \big)
-\end{multline}
-This FST, that indeed is an FSA, will be created with the help of the OpenGRM library. As described in the their documentation, the available probability distributions to build the n-gram model are: witten-bell, absolute, katz, kneser-ney, presmoothed, unsmoothed. In the test section there will be results of different tests with each of this distributions. Moreover, there is the possibility to choose the deepness of the dependency of a concept tag with respect to the ones that precede. The more the number of previous concept tags on which compute the probability of the current tag, the higher the size of the equivalent FST.
+For the conversion on speech in text, we used the \textit{Speech Recognition} library, which allows to use Google's speech recognition services without having to implement particular algorithms. This requires an active internet connection while using the bot with speech interaction enabled. Moreover, a good microphone with noise reduction is recommended in order to obtain better performances.
+For the opposite task, we used the library pyttsx3, a porting of the original library pyttsx on Python3. This works pretty well on all operating systems, especially with the ones with good speakers and in few lines of code is possible to hear our machine speaking.
 
-The next step will consist in the composition of the previously created FSTs, being aware of the order, that is, the first left-composed to the second. As we mentioned in the introduction, the composition is a very powerful operation that should be followed by a determinisation and a minimisation to reduce the size of the result and to improve performances of next usages. What compose basically does is to merge two FSTs in such a way that if the first FST transduces token $a$ to $b$ with cost $cost_1$ and the second transduces $b$ to $c$ with cost $cost_2$, the result of the composition should transduce $a$ to $c$ with cost $ cost_1 \circledast cost_2 $.
+\subsection{Rasa NLU}
 
-\subsection{Improvements}
+The Rasa NLU model has to be set up through a config file, in which we have to specify two important parameters: the human language of the LUS and the pipeline of layers that will compose the model. The first field is very simple and only requires one label like \textit{en}, \textit{it} or \textit{de}. We used english and downloaded the large version of the spacy en dataset, called \textit{en\_core\_web\_lg}, to achive better performances but paying with lower training and test speed.
+
+We trained and evaluated three different pipeline templates: 
+\begin{itemize}
+\item Spacy + Scikit-Learn
+\item Mitie
+\item Mitie + Scikit-Learn
+\end{itemize}
+
+Each of this templates is build of different layers that do different tasks. There are layers that initialises the the NLU model, like \textit{nlp\_spacy} and \textit{nlp\_mitie} that should be put at the beginning to be used by the other components. Then there are layers that do not output nothing but their functions are used by next components, for example ngram or spacy featurizers. Finally, at the end of the pipeline there are layers whose task is to extract entities and intent from the sentence, using, if possible, previous layers help to improve perfomances.
+Each component of the pipeline can be tuned with lots of parameters, going to modify for example the performances of the internal neural network, of the support vector machine or of the conditional random field algorithm. While there are complex entity extractors and intent recognisers that uses NN or CRF, there are other very simple and fast that uses simple regular expressions and string similarity functions, but their performances are not competitive.
+
+\cite{pipeline}
+
+\subsection{Rasa Core}
+
+
+
+
+\subsubsection{FormAction}
 
 There is a simple way to improve our algorithm to perform better, that is to do some considerations on the numbers of O tags in the IOB notation of the sentences, because they are about the 75\% of the total. Given that a B tag depends on the previous O tag, if it exists, and that eventually I tags can depend on previous O tags in n-gram model with a sufficiently big $n$, one can comprehend that in this case the probabilities of B and I tags does not discriminate over the previous symbol because often it's a simple O. The idea is to substitute the O tags in the language model with the token they are representing. There is a simple way to that without applying lots of edits to the previous algorithm, that is to pre-process the input file and then to post-process the results. The preprocess will simply substitute all the O tags of the training dataset with the corresponding token. Note that the input sentences that has to be tested will not need a preprocessing phase. Finally, given the modifications we applied, the results will have B tags, I tags and tokens. The post-process will consist only in the substitution of all tokens with O tags.
 
@@ -206,9 +211,9 @@ An complete example of the code is available here: \url{https://github.com/Luca1
 
 \begin{thebibliography}{2}
 
-\bibitem{openfst}
-OpenFST - Open-source library for constructing, combining, optimizing, and searching weighted finite-state transducers (FSTs). \\
-\url{http://www.openfst.org/twiki/bin/view/FST/WebHome}
+\bibitem{pipeline}
+Pipeline of RasaNLU \\
+\url{https://nlu.rasa.com/pipeline.html}
 
 \bibitem{opengrm}
 OpenGRM - Collection of open-source libraries for constructing, combining, applying and searching formal grammars.
