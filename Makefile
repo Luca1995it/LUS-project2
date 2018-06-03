@@ -29,6 +29,34 @@ evaluate-nlu:
 	--folds $(FOLDS) \
 	--verbose
 
+
+######################### CORE PART ############################################
+
+train-core:
+	python bot.py train-dialogue
+
+evaluate-core:
+	python -m rasa_core.evaluate \
+	--stories data/babi_stories.md \
+	--core models/dialogue \
+	--nlu models/nlu/default/current
+
+######################## BUILD & RUNNING #######################################
+
+build: train-nlu train-core
+
+all: build run
+
+populate-db:
+	python populate_database.py
+
+run:
+	python bot.py run
+
+
+
+######################## SPECIFIC NLU PIPELINES ################################
+
 # SKLEARN
 train-nlu-sklearn:
 	python -m rasa_nlu.train \
@@ -66,34 +94,10 @@ train-nlu-mixed:
 	--data data/franken_data.json \
 	--path models/nlu
 
-evaluate-nlu-mitie:
+evaluate-nlu-mixed:
 	python -m rasa_nlu.evaluate \
 	--data data/franken_data.json \
 	--config config_nlu/mixed.yml \
 	--mode crossvalidation \
 	--folds $(FOLDS) \
 	--verbose
-
-######################### CORE PART ############################################
-
-train-core:
-	python bot.py train-dialogue
-
-evaluate-core:
-	python -m rasa_core.evaluate \
-	--stories data/babi_stories.md \
-	--max_stories 1000 \
-	--core models/dialogue \
-	--nlu models/nlu/default/current
-
-######################## BUILD & RUNNING #######################################
-
-build: train-nlu train-core
-
-all: build run
-
-populate-db:
-	python populate_database.py
-
-run:
-	python bot.py run

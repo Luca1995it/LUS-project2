@@ -77,9 +77,11 @@ if __name__ == '__main__':
 			description='starts the bot')
 
 	parser.add_argument(
-			'task',
-			choices=["train-nlu", "train-dialogue", "run"],
-			help="what the bot should do - e.g. run or train?")
+		'task',
+		choices=["train-nlu", "train-dialogue", "run"],
+		help="what the bot should do - e.g. run or train?"
+	)
+
 	task = parser.parse_args().task
 
 	# decide what to do based on first parameter of the script
