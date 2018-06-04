@@ -144,7 +144,7 @@ For the opposite task, we used the library pyttsx3, a porting of the original li
 
 \subsection{Rasa NLU}
 
-The Rasa NLU model has to be set up through a config file, in which we have to specify two important parameters: the human language of the LUS and the pipeline of layers that will compose the model. The first field is very simple and only requires one string like \textit{en}, \textit{it} or \textit{de}. We used English and downloaded the large version of the spacy dataset, called \textit{en\_core\_web\_lg}, to achieve better performances but paying with lower training and test speed.
+The Rasa NLU model has to be set up through a config file, in which we have to specify two important parameters: the human language of the LUS and the pipeline of layers that will compose the model \cite{rasa_nlu}. The first field is very simple and only requires one string like \textit{en}, \textit{it} or \textit{de}. We used English and downloaded the large version of the spacy dataset, called \textit{en\_core\_web\_lg}, to achieve better performances but paying with lower training and test speed.
 
 We trained and evaluated three different pipeline templates: 
 \begin{itemize}
@@ -158,7 +158,7 @@ Each component of the pipeline can be tuned with lots of parameters, going to mo
 
 \subsection{Rasa Core}
 
-The Rasa Core module requires a domain file in which there will be specifications about slots, entities, intents, templates and actions. One more advanced thing that has to be specified directly in the Python code when training a model is the policies it should use to take decisions. Built-in examples use some default policies like \textit{MemoizationPolicy} and \textit{KerasPolicy}. There is also the possibility to extend the default Policy class to create new custom policies that can be more specific for certain tasks and so perform better.
+The Rasa Core module requires a domain file in which there will be specifications about slots, entities, intents, templates and actions \cite{rasa_core}. One more advanced thing that has to be specified directly in the Python code when training a model is the policies it should use to take decisions. Built-in examples use some default policies like \textit{MemoizationPolicy} and \textit{KerasPolicy}. There is also the possibility to extend the default Policy class to create new custom policies that can be more specific for certain tasks and so perform better.
 Actions, like policies, can be created by programmers simply extending some of the existent Action classes. There are few important methods they have to implement, first of the one that is called when an Action is executed. Furthermore, Rasa Core provides built-in action called \textit{utter\_actions} that performs simple tasks like sending a message back to the user.
 Our Bot will be very similar to the example of the restaurant but with some improvements:
 \begin{itemize}
@@ -188,7 +188,36 @@ The number in the parenthesis is the standard deviation of the results during cr
 
 \subsection{Rasa Core}
 
-TODO
+First of all, the stories dataset has been shuffled and divided in training and test sets with dimensions of 70\% and 30\% w.r.t. the original dataset. Then we tested the following combinations of policies:
+
+\begin{itemize}
+\item MemoizationPolicy with max history 3
+\item MemoizationPolicy with max history 5
+\item AugmentedMemoizationPolicy
+\item RestaurantPolicy
+\item KerasPolicy
+\item FallbackPolicy
+\item FallbackPolicy with a core threshold of 0.5
+\item SklearnPolicy
+\item MemoizationPolicy with max history 3 and RestaurantPolicy
+\item AugmentedMemoizationPolicy and RestaurantPolicy
+\item MemoizationPolicy and KerasPolicy
+\item AugmentedMemoizationPolicy and KerasPolicy
+\item MemoizationPolicy and SklearnPolicy
+\item AugmentedMemoizationPolicy and SklearnPolicy
+\item MemoizationPolicy, KerasPolicy and SklearnPolicy
+\item MemoizationPolicy, RestaurantPolicy and SklearnPolicy
+\item AugmentedMemoizationPolicy, RestaurantPolicy and SklearnPolicy
+\end{itemize}
+
+The RestaurantPolicy is a variant of the KerasPolicy, with a different model architecture. The results for different combinations of policies are showed in figure \ref{fig:results2}. Given the low performances of some policies like FallbackPolicy (even if combined with some others) their results are not reported because not really interesting. As can be seen from the results table, there are some combination of policies that perform really fine. Has to be taken into account that Sklearn policies are very fast to be trained and evaluated with respect to Keras ones, and that the performances of Sklearn + AugmentedMemoization are very similar to the ones of Keras + Memoization. This confirms that the better combination of policies between our trials is Sklearn + AugmentedMemoization. The rare errors are mainly due to the listen action being exchanged for the do-nothing action (None).
+
+\begin{figure}
+  \includegraphics[scale=0.22]{core_results}
+  \caption{Core results}
+  \label{fig:results2}
+\end{figure}
+
 
 
 \section{Conclusions}
@@ -213,9 +242,16 @@ Pipeline of RasaNLU \\
 \url{https://nlu.rasa.com/pipeline.html}
 
 \bibitem{speech_study}
-Study about the performances of some speech recognizer services \\
+Study about the performances of some speech recogniser services \\
 \url{https://www.cs.montana.edu/izurieta/pubs/sede2_2015.pdf}
 
+\bibitem{rasa_core}
+Rasa Core documentation \\
+\url{https://core.rasa.com/index.html}
+
+\bibitem{rasa_nlu}
+Rasa NLU documentation \\
+\url{https://nlu.rasa.com/index.html}
 
 \end{thebibliography}
 

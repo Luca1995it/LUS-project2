@@ -41,7 +41,7 @@ class ActionSuggest(Action):
 		if tracker.get_slot("matches") is not None:
 			dispatcher.utter_message("here's what I found")
 			#dispatcher.utter_message("\n".join([ "- %s, %s cuisine in %s, economical class: %s" % (x['name'],x['cuisine'],x['location'],x['price']) for x in tracker.get_slot("matches")[:5]]))
-			dispatcher.utter_message(tracker.get_slot("matches").join(","))
+			dispatcher.utter_message(",".join(tracker.get_slot("matches")))
 			dispatcher.utter_message("is it ok for you? because I'm not going to find anything else")
 		else:
 			dispatcher.utter_message("I did not found any restaurant, please retry with less restrictions")

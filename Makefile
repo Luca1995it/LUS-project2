@@ -14,34 +14,15 @@ help:
 	@echo "--- evaluate-core"
 	@echo "------- Evaluate the performances of your policies predicting the next action"
 
-############################## NLU PART ########################################
+############################ RUN SECTION #######################################
 
 FOLDS=5
 
 train-nlu:
 	python bot.py train-nlu
 
-evaluate-nlu:
-	python -m rasa_nlu.evaluate \
-	--data data/franken_data.json \
-	--config nlu_model_config.yml \
-	--mode crossvalidation \
-	--folds $(FOLDS) \
-	--verbose
-
-
-######################### CORE PART ############################################
-
 train-core:
 	python bot.py train-dialogue
-
-evaluate-core:
-	python -m rasa_core.evaluate \
-	--stories data/babi_stories.md \
-	--core models/dialogue \
-	--nlu models/nlu/default/current
-
-######################## BUILD & RUNNING #######################################
 
 build: train-nlu train-core
 
@@ -53,7 +34,27 @@ populate-db:
 run:
 	python bot.py run
 
+######################## EVALUATION SECTION ####################################
 
+init-data:
+	python split_stories.py
+
+test-nlu: init-data
+	python bot.py train-nlu
+
+	python -m rasa_nlu.evaluate \
+	--data data/franken_data.json \
+	--config nlu_model_config.yml \
+	--mode crossvalidation \
+	--folds $(FOLDS) \
+	--verbose
+
+test-core: init-data
+	python bot.py train-core
+
+	python -m rasa_core.evaluate \
+	--stories data/evaluate_babi_stories.md \
+	--core models/dialogue
 
 ######################## SPECIFIC NLU PIPELINES ################################
 

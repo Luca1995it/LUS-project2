@@ -18,6 +18,11 @@ from rasa_core.featurizers import (
 	BinarySingleStateFeaturizer)
 from rasa_core.interpreter import RasaNLUInterpreter
 from rasa_core.policies.memoization import MemoizationPolicy
+from rasa_core.policies.sklearn_policy import SklearnPolicy
+from rasa_core.policies.augmented_memoization import AugmentedMemoizationPolicy
+from rasa_core.policies.ensemble import SimplePolicyEnsemble
+from rasa_core.policies.fallback import FallbackPolicy
+from rasa_core.policies.keras_policy import KerasPolicy
 from speech_channel import SpeechInputChannel
 
 logger = logging.getLogger(__name__)
@@ -27,12 +32,48 @@ SPEECH_ON = False
 def train_dialogue(domain_file="restaurant_domain.yml",
 				   model_path="models/dialogue",
 				   training_data_file="data/babi_stories.md"):
-	agent = Agent(domain_file,
-				#policies=[MemoizationPolicy(max_history=3),
-				#    RestaurantPolicy()]
-				policies=[MemoizationPolicy(max_history=3),
-					RestaurantPolicy()]
+	agent = Agent(domain_file,[MemoizationPolicy(max_history=3),
+								RestaurantPolicy()])
+
+	training_data = agent.load_data(training_data_file)
+	agent.train(
+			training_data,
+			epochs=400,
+			batch_size=100,
+			validation_split=0.2
 	)
+
+	agent.persist(model_path)
+	return agent
+
+
+def train_core(domain_file="restaurant_domain.yml",
+				   model_path="models/dialogue",
+				   training_data_file="data/train_babi_stories.md"):
+
+	policies_array = [
+		[MemoizationPolicy(max_history=3)],                                               #gut
+		[MemoizationPolicy(max_history=5)],                                               #gut
+		[AugmentedMemoizationPolicy()],                                                   #gut
+		[RestaurantPolicy()],                                                             #gut
+		[KerasPolicy()],                                                                  #gut
+		[FallbackPolicy()],                                                               #gut
+		[FallbackPolicy(core_threshold=0.5)],                                             #gut
+		[SklearnPolicy(scoring=['accuracy','f1'])],                                       #gut
+		[MemoizationPolicy(max_history=3), RestaurantPolicy()],                           #gut
+		[AugmentedMemoizationPolicy(), RestaurantPolicy()],                               #gut
+		[MemoizationPolicy(max_history=3), KerasPolicy()],                                #gut
+		[AugmentedMemoizationPolicy(), KerasPolicy()],                                    #gut
+		[MemoizationPolicy(max_history=3), SklearnPolicy(scoring=['accuracy','f1'])],     #gut
+		[AugmentedMemoizationPolicy(), SklearnPolicy(scoring=['accuracy','f1'])],         #gut
+		[MemoizationPolicy(max_history=3), KerasPolicy(), SklearnPolicy()],               #gut
+		[MemoizationPolicy(max_history=3), RestaurantPolicy(), SklearnPolicy()],          #gut
+		[AugmentedMemoizationPolicy(), RestaurantPolicy(), SklearnPolicy(scoring=['accuracy','f1'])]  #gut
+	]
+
+	index_policies = -1
+	print("Training policies: [%s]" % ",".join([x.__class__.__name__ for x in policies_array[index_policies]]))
+	agent = Agent(domain_file,policies_array[index_policies])
 
 	training_data = agent.load_data(training_data_file)
 	agent.train(
@@ -81,7 +122,7 @@ if __name__ == '__main__':
 
 	parser.add_argument(
 		'task',
-		choices=["train-nlu", "train-dialogue", "run"],
+		choices=["train-nlu", "train-dialogue", "train-core", "run"],
 		help="what the bot should do - e.g. run or train?"
 	)
 
@@ -92,5 +133,7 @@ if __name__ == '__main__':
 		train_nlu()
 	elif task == "train-dialogue":
 		train_dialogue()
+	elif task == "train-core":
+		train_core()
 	elif task == "run":
 		run()

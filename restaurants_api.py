@@ -1,15 +1,15 @@
-#from pymongo import MongoClient
+from pymongo import MongoClient
 
 class RestaurantAPI(object):
 	def __init__(self):
-		#client = MongoClient('mongodb://localhost:27017/')
+		client = MongoClient('mongodb://localhost:27017/')
 		self.db = None#client.jarvis
 
 	def db_query(self, query):
 		return [x for x in self.db.restaurants.find(query)]
 
 	def search(self, cuisine, location, price):
-		return ["peppos pizza"]
+
 		# creating query
 		query = {}
 		if cuisine is not None:
@@ -19,7 +19,7 @@ class RestaurantAPI(object):
 		if price is not None:
 			query['price'] = tracker.get_slot("price")
 
-		# expansion search
+		# expansionistic search
 		res = self.db_query(query)
 		if len(res) > 0:
 			return res
