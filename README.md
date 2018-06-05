@@ -16,7 +16,7 @@ custom_actions.py to False.
 
 ```make build```
 
-- To run the bot, launche the following command:
+- To run the bot, launch the following command:
 
 ```make run```
 
