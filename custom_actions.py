@@ -3,7 +3,8 @@ from rasa_core.actions.forms import EntityFormField, FormAction
 from rasa_core.events import SlotSet
 from restaurants_api import RestaurantAPI
 
-ACTIVATE_REAL_DB = False
+# set to false to avoid installing and using MongoDB
+ACTIVATE_REAL_DB = True
 
 class ActionSearchRestaurants(FormAction):
 	def name(self):

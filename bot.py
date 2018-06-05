@@ -27,7 +27,8 @@ from speech_channel import SpeechInputChannel
 
 logger = logging.getLogger(__name__)
 
-SPEECH_ON = False
+# set to false to use the standard ConsoleInputChannel
+SPEECH_ON = True
 
 def train_dialogue(domain_file="restaurant_domain.yml",
 				   model_path="models/dialogue",
@@ -71,7 +72,7 @@ def train_core(domain_file="restaurant_domain.yml",
 		[AugmentedMemoizationPolicy(), RestaurantPolicy(), SklearnPolicy(scoring=['accuracy','f1'])]  #gut
 	]
 
-	index_policies = -1
+	index_policies = -4
 	print("Training policies: [%s]" % ",".join([x.__class__.__name__ for x in policies_array[index_policies]]))
 	agent = Agent(domain_file,policies_array[index_policies])
 

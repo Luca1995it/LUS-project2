@@ -1,4 +1,6 @@
 help:
+	@echo "--- populate-db"
+	@echo "------- Populate the mongoDB database with some restaurants"
 	@echo "--- train-nlu"
 	@echo "------- Train the natural language understanding using Rasa NLU."
 	@echo "--- train-core"
@@ -9,8 +11,12 @@ help:
 	@echo "------- Run the bot on the trained NLU and Core"
 	@echo "--- all"
 	@echo "------- Train and run"
-	@echo "--- evaluate-nlu"
-	@echo "------- Evaluate the performances of the NLU tool"
+	@echo "--- evaluate-nlu-sklearn"
+	@echo "------- Evaluate the performances of the NLU with sklearn pipeline"
+	@echo "--- evaluate-nlu-mitie"
+	@echo "------- Evaluate the performances of the NLU with mitie pipeline"
+	@echo "--- evaluate-nlu-mixed"
+	@echo "------- Evaluate the performances of the NLU with mixed pipeline"
 	@echo "--- evaluate-core"
 	@echo "------- Evaluate the performances of your policies predicting the next action"
 
@@ -36,27 +42,20 @@ run:
 
 ######################## EVALUATION SECTION ####################################
 
+##### CORE
+
 init-data:
 	python split_stories.py
 
-test-nlu: init-data
-	python bot.py train-nlu
-
-	python -m rasa_nlu.evaluate \
-	--data data/franken_data.json \
-	--config nlu_model_config.yml \
-	--mode crossvalidation \
-	--folds $(FOLDS) \
-	--verbose
-
-test-core: init-data
+evaluate-core: init-data
 	python bot.py train-core
 
 	python -m rasa_core.evaluate \
 	--stories data/evaluate_babi_stories.md \
 	--core models/dialogue
 
-######################## SPECIFIC NLU PIPELINES ################################
+
+##### NLU PIPELINES
 
 # SKLEARN
 train-nlu-sklearn:
@@ -65,7 +64,7 @@ train-nlu-sklearn:
 	--data data/franken_data.json \
 	--path models/nlu
 
-evaluate-nlu-sklearn:
+evaluate-nlu-sklearn: train-nlu-sklearn
 	python -m rasa_nlu.evaluate \
 	--data data/franken_data.json \
 	--config config_nlu/sklearn.yml \
@@ -80,7 +79,7 @@ train-nlu-mitie:
 	--data data/franken_data.json \
 	--path models/nlu
 
-evaluate-nlu-mitie:
+evaluate-nlu-mitie: train-nlu-mitie
 	python -m rasa_nlu.evaluate \
 	--data data/franken_data.json \
 	--config config_nlu/mitie.yml \
@@ -95,7 +94,7 @@ train-nlu-mixed:
 	--data data/franken_data.json \
 	--path models/nlu
 
-evaluate-nlu-mixed:
+evaluate-nlu-mixed: train-nlu-mixed
 	python -m rasa_nlu.evaluate \
 	--data data/franken_data.json \
 	--config config_nlu/mixed.yml \

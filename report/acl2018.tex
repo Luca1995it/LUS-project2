@@ -43,7 +43,7 @@
 
 \begin{abstract}
 
-This document contains the instructions to prepare, implement and test a simple bot, which will allow users to search for a restaurant and make reservations using the voice. The program has been developed using the open-source python libraries \textit{RasaNLU}, \textit{RasaCore}, \textit{SpeechRecognition} (with Google API's) and \textit{pyttsx3}. RasaNLU is a natural language understanding framework to extract intents and entities from sentences while RasaCore uses this informations to choose the best next action to be executed. Both are written in Python given the giant number of machine learning tools available for this language and both can be run in a "standalone" mode or in server mode. SpeechRecognition is a simple library that allows to use the Google Speech Recognition service and to easily transform speech in text. Finally, we will use pyttsx3 to transform the speech in text (without using external services).
+This document contains the instructions to prepare, implement and test a simple bot, which will allow users to search for a restaurant and make reservations using the voice. The program has been developed using the open-source python libraries \textit{RasaNLU}, \textit{RasaCore}, \textit{SpeechRecognition} (with Google API's) and \textit{pyttsx3}. RasaNLU is a natural language understanding framework to extract intents and entities from sentences while RasaCore uses this informations to choose the best next action to be executed. Both are written in Python given the giant number of machine learning tools available for this language and both can be run in a ``standalone'' mode or in server mode. SpeechRecognition is a simple library that allows to use the Google Speech Recognition service and to easily transform speech into text. Finally, we will use pyttsx3 to transform text in speech but without using external services.
 
 \end{abstract}
 
@@ -70,7 +70,7 @@ The Human Machine Spoken Dialog is the set of all components that, together, all
 \end{itemize}
 
 The \textit{Automatic Speech Recognition} and the \textit{Text to Speech Synthesis} are the components that have to interact directly with the user. The first has to take in input a discrete electric signal representing sound waves and convert it to a sequence of tokens. There are many online services (Google first) that help doing this task easily.
-After having converted speech in text, the next step consists in the extraction of intents and entities from the input sentence. This task is called \textit{Natural Language Understanding}. Intents are a finite set of what the user wants to do, for example a request or a command. Better results can be obviously obtained trying to use one intent for each sentence and trying to keep the set of possible intents small. On the other side entities are the important informations that have to be extracted from the sentence and that have to be used by the machine. For example, the sentence "please search for an Italian restaurant in London" contains two entities: the type of cuisine and the location of the restaurant. In this case the intent was to do a research of restaurants.
+After having converted speech in text, the next step consists in the extraction of intents and entities from the input sentence. This task is called \textit{Natural Language Understanding}. Intents are a finite set of what the user wants to do, for example a request or a command. Better results can be obviously obtained trying to use one intent for each sentence and trying to keep the set of possible intents small. On the other side entities are the important informations that have to be extracted from the sentence and that have to be used by the machine. For example, the sentence ``please search for an Italian restaurant in London" contains two entities: the type of cuisine and the location of the restaurant. In this case the intent was to do a research of restaurants.
 Once intents and entities have been correctly extracted, they are used by the \textit{Dialogue Manager} to take decisions on what the bot should do next. Dialogue Managers can be seen as routers: they take in input intents and entities and have to decide which action the bot should execute. For better performances they often receive in input a record of the past interactions too. What are actions? Actions are functions that use all the previous informations to create a response for the user. They often can query a database or make online searches. The output of the action is a sequence of informations that has to be sent back to the user, but are not yet human friendly. The transduction of information in sentences for the user is done by the \textit{Language Generation} module. This task is one of the most difficult and this project will not cover how to create such a module, it will only generate predefined sentences and use simple templates.
 Finally, once the sentence has been created, a \textit{Text to Speech Synthesizer} provides the functionalities to transform them in sound waves that can be understood by humans, trying to emulate all the human behaviours while speaking, for example doing little pauses between different sentences, changes of tones, variations of the pitch and the correct use of accents. The cycle will then restart if the user says something else.
  
@@ -84,7 +84,7 @@ RasaNLU allows to train a model for the extraction of entities and the classific
 
 \subsubsection{RasaCore}
 
-RasaCore is a framework to decide the best action to execute given the story of the dialogue and the last intent/entities from the user. The core of the framework are the policies, which are trained to predict the next action to execute based on the history of the dialogue and the last user interaction. For each action a probability is computed and the one with the highest is launched. Policies can use neural networks, SVM and lots of other algorithms to improve their performances and should be trained through stories. A story is a sequence of user intents and bot actions describing a dialogue from beginning to end, often enriched with entities and other data. The additive data are contained in data structures called slots, which are filled and changed during the conversation. Slots basically keep track of the conversation and automatically updated when entities are extracted. There is the possibility to set them manually through events too.
+RasaCore is a framework to decide the best action to execute given the story of the dialogue and the last intent/entities from the user. The core of the framework are the policies, which are trained to predict the next action to execute based on the history of the dialogue and the last user interaction. For each action a probability is computed and the one with the highest is launched. Policies can use neural networks, SVM and lots of other machine learning tools to improve their performances and should be trained through stories. A story is a sequence of user intents and bot actions describing a dialogue from beginning to end, often enriched with entities and other data. The additive data are contained in data structures called slots, which are filled and changed during the conversation. Slots basically keep track of the conversation and are automatically updated when entities are extracted. There is the possibility to set them manually through events too.
 
 \section{Datasets Overview}
 
@@ -104,7 +104,7 @@ The dataset for the NLU task is called Franken Data and contains 1977 sentences.
 \end{itemize}
 
 The sentences have a very low average length of 4.4 words, and this will lead to very satisfying results in the accuracy of the RasaNLU model.
-The entities are not so many, with an average of only 0.65 entities extracted from each sentence (1293 in total). There are lot of very simple sentences like \textit{ok great} or \textit{perfect thank you} that do not contain entities at all while some others have up to 4 entities and are longer (up to 22 words), especially those whose intent is to inform or request for informations. For each entity there are information about the part of the sentence in which it was found, to help the algorithm perform better. There are 5 different types of entities:
+The entities are not so many, with an average of only 0.65 entities extracted from each sentence (1293 in total). There are lot of very simple sentences like \textit{ok great} or \textit{perfect thank you} that do not contain entities at all while some others have up to 4 entities and are longer (up to 22 words), especially those whose intent is to inform or request for informations. For each entity there are information about the part of the sentence in which it was found, to help the algorithm perform better. There are 5 different categories of entities:
 
 \begin{itemize}
 \item \textit{cuisine}, with 70 different specialities (573 total instances)
@@ -139,7 +139,7 @@ The average length of the conversation, including both user requests and Bot res
 \subsection{Speech2Text \& Text2Speech}
 
 For the conversion on speech in text, we used the \textit{Speech Recognition} library, which allows to use Google's speech recognition services without having to implement particular algorithms. This requires an active internet connection while using the bot with speech interaction enabled. Moreover, a good microphone with noise reduction is recommended in order to obtain a better voice recognition.
-There are studies that shows that the Google Speech Recognition service work very well. Most of the (rare) errors are due to delays in the internet connection \cite{speech_study}
+There are studies that shows that the Google Speech Recognition service work very well. Most of the (rare) errors are due to delays in the internet connection \cite{speech_study}.
 For the opposite task, we used the library pyttsx3, a porting of the original library pyttsx on Python3. This works pretty well on all operating systems, especially with the ones with good speakers and in few lines of code is possible to hear our machine speaking.
 
 \subsection{Rasa NLU}
@@ -153,8 +153,8 @@ We trained and evaluated three different pipeline templates:
 \item Mitie + Scikit-Learn
 \end{itemize}
 
-Each of there templates is built of different layers that do different tasks. There are layers that initialises the NLU model, like \textit{nlp\_spacy} and \textit{nlp\_mitie} that should be put at the beginning to be used by the other components. Then there are layers that do not output nothing but their functions are used by next components, for example ngram algorithms or spacy featurizers. Finally, at the end of the pipeline there are layers whose task is to extract entities and intent from the sentence, using, if possible, previous layers help to improve performances \cite{pipeline}.
-Each component of the pipeline can be tuned with lots of parameters, going to modify for example the performances of the internal neural network, of the support vector machine or of the conditional random field algorithm. While there are complex entity extractors and intent recognisers that uses NN or CRF, there are other very simple and fast which use simple regular expressions and string similarity functions, but their performances are not competitive.
+Each of the three templates is built of different layers that do different tasks. There are layers that initialises the NLU model, like \textit{nlp\_spacy} and \textit{nlp\_mitie} that should be put at the beginning to be used by the other components. Then there are layers that do not output nothing but their functions are used by next components, for example ngram algorithms or spacy featurizers. Finally, at the end of the pipeline there are layers whose task is to extract entities and intent from the sentence, using, if possible, previous layers help to improve performances \cite{pipeline}.
+Each component of the pipeline can be tuned with lots of parameters, going to modify for example the performances of the internal neural network, of the support vector machine or of the conditional random field algorithm. While there are complex entity extractors and intent recognisers that uses NN or CRF, there are others very simple and fast which use simple regular expressions and string similarity functions, but their performances are not competitive.
 
 \subsection{Rasa Core}
 
@@ -172,7 +172,7 @@ Form Actions are a new type of actions, available from version 0.9.0. They are v
 
 \section{Test and Results}
 
-All the test has been launched on a i7 processor at 3.3GHz. At the moment, given that Rasa does not support multithreading natively, the number of the processor cores is not interesting.
+All the test has been launched on a i7 processor at 3.3GHz with 4 active cores. Note that the Rasa framework does not support multithreading but all ML layers like Tensorflow and Spacy does.
 
 \subsection{Rasa NLU}
 
@@ -184,11 +184,11 @@ As mentioned, the Franken Data file, contains 1977 samples with only 6 different
   \label{fig:results1}
 \end{figure}
 
-The number in the parenthesis is the standard deviation of the results during cross-validation. All three pipelines perform very well, with an F1-score always over 0.98. However, the interesting case is the sklearn\_spacy pipeline because, even if it performs a little worse than the others, it is 20 or 30 times faster. The time column shows how many seconds elapsed since the beginning of the test, so it includes both the time spend training the algorithm and the time to test it. The few errors in the entities extraction were mainly due to the \textit{north american} cuisine and the \textit{north} location, because sometimes happened that the second was extracted instead of the first. With regards to the intent classification, the few errors we noticed were on some \textit{request\_info} being classified as \textit{affirm} intents.  
+The number in brackets is the standard deviation of the results during cross-validation. All three pipelines perform very well, with an F1-score always over 0.98. However, the interesting case is the sklearn\_spacy pipeline because, even if it performs a little worse than the others, it is 20 or 30 times faster. The time column shows how many seconds elapsed since the beginning of the test, so it includes both the time spent training the algorithm and the time needed to test it. The few errors in the entities extraction were mainly due to the \textit{north american} cuisine and the \textit{north} location, because sometimes happened that the second was extracted instead of the first. With regards to the intent classification, the few errors we noticed were on some \textit{request\_info} being classified as \textit{affirm} intents.  
 
 \subsection{Rasa Core}
 
-First of all, the stories dataset has been shuffled and divided in training and test sets with dimensions of 70\% and 30\% w.r.t. the original dataset. Then we tested the following combinations of policies:
+First of all, the stories dataset has been randomly shuffled and divided in training and test sets with dimensions of 70\% and 30\% w.r.t. the original one. Then the following combinations of policies has been trained and tested:
 
 \begin{itemize}
 \item MemoizationPolicy with max history 3
@@ -210,15 +210,13 @@ First of all, the stories dataset has been shuffled and divided in training and 
 \item AugmentedMemoizationPolicy, RestaurantPolicy and SklearnPolicy
 \end{itemize}
 
-The RestaurantPolicy is a variant of the KerasPolicy, with a different model architecture. The results for different combinations of policies are showed in figure \ref{fig:results2}. Given the low performances of some policies like FallbackPolicy (even if combined with some others) their results are not reported because not really interesting. As can be seen from the results table, there are some combination of policies that perform really fine. Has to be taken into account that Sklearn policies are very fast to be trained and evaluated with respect to Keras ones, and that the performances of Sklearn + AugmentedMemoization are very similar to the ones of Keras + Memoization. This confirms that the better combination of policies between our trials is Sklearn + AugmentedMemoization. The rare errors are mainly due to the listen action being exchanged for the do-nothing action (None).
-
 \begin{figure}
   \includegraphics[scale=0.22]{core_results}
   \caption{Core results}
   \label{fig:results2}
 \end{figure}
 
-
+The RestaurantPolicy is a variant of the KerasPolicy, with a different model architecture. The results for different combinations of policies are showed in figure \ref{fig:results2}. Given the low performances of some policies like FallbackPolicy (even if combined with some others) their results are not reported because not really interesting. As can be seen from the results table, there are some combinations of policies that perform really well. Has to be taken into account that Sklearn policies are very fast to be trained and evaluated with respect to Keras ones, and that the performances of Sklearn + AugmentedMemoization are very similar to the ones of Keras + Memoization. This confirms that the better combination of policies between our trials is Sklearn + AugmentedMemoization. The rare errors are mainly due to the listen action being exchanged for the do-nothing action (None).
 
 \section{Conclusions}
 
